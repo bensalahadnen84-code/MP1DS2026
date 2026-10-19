@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ma page DENDEN</title>
+<style>
+  :root {
+    --fond: #f5f7f6;
+    --carte: #ffffff;
+    --texte: #1d2b27;
+    --discret: #5f6f6a;
+    --trait: #d9e1de;
+    --accent: #1f6b57;
+    --entete: #e4eeea;
+    --total: #f0f4f2;
+    --alerte: #b3261e;
+    --alerte-fond: #fbeceb;
+    --ok: #1f6b57;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fond: #121816;
+      --carte: #1b2320;
+      --texte: #e8efec;
+      --discret: #9fb0aa;
+      --trait: #2f3d38;
+      --accent: #6fcfb3;
+      --entete: #24312d;
+      --total: #202b27;
+      --alerte: #ff8a80;
+      --alerte-fond: #3a1f1d;
+      --ok: #6fcfb3;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px 16px;
+    background: var(--fond);
+    color: var(--texte);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.5;
+  }
+  main { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin: 0 0 4px; }
+  h2 { font-size: 1.2rem; margin: 28px 0 8px; }
+  p.sous-titre { margin: 0 0 20px; color: var(--discret); font-family: system-ui, sans-serif; font-size: .95rem; }
+  .tableau {
+    background: var(--carte);
+    border: 1px solid var(--trait);
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  table { width: 100%; border-collapse: collapse; font-family: system-ui, sans-serif; font-size: .95rem; }
+  th, td { padding: 10px 14px; text-align: right; border-bottom: 1px solid var(--trait); }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { background: var(--entete); font-weight: 600; }
+  tr.total td { background: var(--total); font-weight: 700; border-top: 2px solid var(--accent); }
+  tr.compteur td { font-weight: 700; color: var(--accent); }
+  td.zero { color: var(--discret); }
+  td.change { color: var(--alerte); font-weight: 700; }
+  tr.section td {
+    background: var(--entete);
+    text-align: left;
+    font-weight: 600;
+    border-top: 2px solid var(--trait);
+  }
+  tr.ecart td { font-weight: 600; }
+  td.positif { color: var(--alerte); }
+  td.negatif { color: var(--alerte); }
+  td.nul { color: var(--ok); }
+  tbody tr:last-child td { border-bottom: 0; }
 
+  .analyse {
+    margin-top: 20px;
+    padding: 16px 18px;
+    background: var(--carte);
+    border: 1px solid var(--trait);
+    border-left: 4px solid var(--alerte);
+    border-radius: 8px;
+    font-family: system-ui, sans-serif;
+    font-size: .95rem;
+  }
+  .analyse h2 { margin-top: 0; font-family: Georgia, serif; }
+  .analyse ol { margin: 8px 0 0; padding-left: 20px; }
+  .analyse li { margin-bottom: 12px; }
+  .analyse code {
+    background: var(--total);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: .9em;
+  }
+  .note { color: var(--discret); font-size: .85rem; margin-top: 12px; font-family: system-ui, sans-serif; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Consommation DENDEN</h1>
+  <p class="sous-titre">Consommation STEG par maison et par société, juillet et août</p>
+
+  <div class="tableau">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Maisons / Société</th>
+          <th scope="col">Consommation Juillet</th>
+          <th scope="col">Consommation Août</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Maison 1</td><td>150</td><td>150</td></tr>
+        <tr><td>Maison 2</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 3</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 4</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 5</td><td>150</td><td>150</td></tr>
+        <tr><td>Maison 6</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 7</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 8</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 9</td><td class="change">100</td><td class="change zero">0</td></tr>
+        <tr><td>Maison 10</td><td>150</td><td>150</td></tr>
+        <tr><td>Office National de l'artisanat</td><td>950</td><td>950</td></tr>
+        <tr class="total"><td>Total (écrit dans le fichier)</td><td>2000</td><td>1900</td></tr>
+        <tr class="compteur"><td>Compteur Denden</td><td>2000</td><td>2000</td></tr>
+
+        <tr class="section"><td colspan="3">Vérification des écarts</td></tr>
+        <tr><td>Somme réelle des 11 lignes</td><td>2100</td><td>2000</td></tr>
+        <tr class="ecart"><td>Erreur du Total écrit (Total − somme réelle)</td><td class="negatif">−100</td><td class="negatif">−100</td></tr>
+        <tr class="ecart"><td>Écart Total écrit − Compteur</td><td class="nul">0</td><td class="negatif">−100</td></tr>
+        <tr class="ecart"><td>Écart somme réelle − Compteur</td><td class="positif">+100</td><td class="nul">0</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section class="analyse">
+    <h2>D'où vient la différence ?</h2>
+    <ol>
+      <li>
+        <strong>Le Total écrit est faux de 100 chaque mois.</strong>
+        Juillet : <code>150+100+100+100+150+100+100+100+100+150+950 = 2100</code>, mais le fichier indique 2000.
+        Août : la somme réelle est 2000, mais le fichier indique 1900.
+        Le même écart de −100 se répète : une ligne de 100 a été oubliée dans les deux additions.
+        Comme Maison 9 vaut 0 en août, la ligne oubliée est forcément une des maisons 2, 3, 4, 6, 7 ou 8, qui valent 100 les deux mois.
+      </li>
+      <li>
+        <strong>La vraie différence avec le compteur est en juillet : +100.</strong>
+        Les maisons et l'Office consomment 2100 alors que le compteur Denden affiche 2000.
+        Toutes les lignes et le compteur sont identiques entre juillet et août, sauf Maison 9 (100 en juillet, 0 en août).
+        C'est donc la consommation de Maison 9 en juillet qui explique les 100 en trop. En août, elle disparaît et la somme (2000) égale exactement le compteur.
+      </li>
+      <li>
+        <strong>L'écart de −100 en août (1900 contre 2000) est une erreur de calcul, pas une consommation.</strong>
+        Il vient du Total écrit à la main, pas des maisons : une fois la somme corrigée à 2000, il n'y a plus d'écart avec le compteur.
+      </li>
+    </ol>
+    <p class="note">Les valeurs sont celles du fichier Excel, sans unité indiquée. Les points 1 et 2 sont déduits des chiffres : seule une vérification des relevés de Maison 9 en juillet peut confirmer la cause exacte.</p>
+  </section>
+</main>
+</body>
+</html>
